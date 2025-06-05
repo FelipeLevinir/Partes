@@ -19,7 +19,7 @@ export interface Evento {
   providedIn: 'root'
 })
 export class EventoService {
-  private apiUrl = 'https://partes.onrender.com'; // 🔁 reemplaza por tu URL real
+  private apiUrl = 'https://partes.onrender.com/evento'; 
 
   constructor(private http: HttpClient) {}
 

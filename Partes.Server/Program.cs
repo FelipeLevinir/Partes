@@ -3,18 +3,18 @@ using Partes.Server.Modelos;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 🔁 Agrega esta sección para habilitar CORS
+// 🔁 Agrega CORS para permitir el frontend (localhost o dominio externo)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5200") // O el dominio de producción
+        policy.WithOrigins("http://localhost:5200") // ✅ Cambiar si publicas el frontend
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
-// Configuración de MongoDB
+// Configuración MongoDB
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection("MongoDbSettings"));
 
@@ -28,20 +28,33 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// 🐞 Opcional: mostrar detalles de errores en desarrollo
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // ✅ Permitir Swagger también en producción (Render)
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+        c.RoutePrefix = "swagger"; // mantiene url /swagger
+    });
+}
 
-// ✅ Habilita la política CORS
+// ✅ CORS debe ir antes de los endpoints
 app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
 app.MapControllers();
 
-// Redirección a Swagger si se accede a la raíz
+// Redirigir desde la raíz a Swagger
 app.MapGet("/", context =>
 {
     context.Response.Redirect("/swagger");
