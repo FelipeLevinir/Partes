@@ -1,0 +1,75 @@
+ <form #ModalForm="ngForm" >
+   <div class="separacion-filas-formulario">
+      @if(InputData.TiposObservacion){
+         <div class="grid">        
+            <label for="TipoObservacion" class="label-titulo-dato">Tipo Observacion</label>
+            <p-select #dropdown="ngModel"
+                        id="TipoObservacion"
+                        name="TipoObservacion"
+                        [options]="InputData.TiposObservacion"
+                        [(ngModel)]="Result.TipoObservacion"
+                        optionLabel="Nombre"
+                        [showClear]="true"
+                        placeholder="Seleccione el tipo de obs."
+                        [required]="InputData.TipoObservacionRequerido ?? false"
+                        (onChange)="onTipoObservacionChange()"
+                        dataKey="Id"
+                        appendTo="body">
+            </p-select>
+         </div>
+      }
+      <div class="grid">     
+         <label for="Observacion" class="label-titulo-dato">Observación</label>
+         <textarea pInputText
+                  id="Observacion"
+                  name="Observacion"
+                  rows="4"
+                  #Observacion="ngModel"
+                  [(ngModel)]="Result.Observacion"
+                  [required]="InputData.ObservacionRequerida ?? false">
+         </textarea>
+      
+      </div>
+
+      <div class="grid">        
+         <documento [AcceptFiles]="'application/pdf'"
+                     [(Documento)]="Result.Adjunto"
+                     [LoadLocal]="true"
+                     [Invalid]="Saved && InputData.ArchivoRequerido && !Result.Adjunto?.Archivo">
+
+         </documento>    
+      </div>
+
+      <div class="grid ">              
+         <panel-info-form-invalid [form]="ModalForm"></panel-info-form-invalid>         
+      </div>
+   </div>
+
+   <ng-template ModalFooter>
+       <div class="grid justify-end">
+
+           <div class="flex">
+               <button-cerrar (click)="Close(null)"></button-cerrar>
+               @if(InputData.TipoAccion === 0){
+                  <button-enviar class="ml-1 mr-0" (click)="Save()"></button-enviar>
+               }
+               @if(InputData.TipoAccion === 1){
+                  <button-visar class="ml-1 mr-0" (click)="Save()"></button-visar>
+               }
+               @if(InputData.TipoAccion === 2){
+                  <button-objetar class="ml-1 mr-0" (click)="Save()"></button-objetar>
+               }
+               @if(InputData.TipoAccion === 3){
+                  <button-rechazar class="ml-1 mr-0" (click)="Save()"></button-rechazar>
+               }
+               @if(InputData.TipoAccion === 4){
+                  <button-anular class="ml-1 mr-0" (click)="Save()"></button-anular>
+               }
+               @if(InputData.TipoAccion === 10){
+                  <button-guardar class="ml-1 mr-0" (click)="Save()"></button-guardar>
+               }
+           </div>
+       </div>
+   </ng-template>
+</form>
+ 

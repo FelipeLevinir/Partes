@@ -1,0 +1,3 @@
+@if(Submitted && !DataForm?.form?.valid){
+   <p-message [severity]="msgs[0].severity" [text]="msgs[0].text" [closable]="false" [icon]="msgs[0].icon"></p-message>
+}

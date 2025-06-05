@@ -1,0 +1,37 @@
+<span>
+   <div class="flex gap-2">
+      <div class="grid">       
+         <label class="label-titulo-dato" for="RangeFechaInicio">Mes inicio</label>
+         <div class="flex ">
+            <month-picker #FechaInicio="ngModel" id="RangeFechaInicio" name="RangeFechaInicio" [(ngModel)]="Value.FechaInicio" (onChange)="onValueChange($event)" ></month-picker>
+            @if(filtroRango){
+               <button pButton  
+                        type="button"
+                        class="p-button-success"
+                        icon="pi pi-calendar-plus"
+                        style="border-radius:4px"
+                        (click)="filtrarRango(true)">
+               </button>
+            }         
+         </div>
+      </div>
+      @if(filtroRango){
+         <div class="grid">     
+            <label class="label-titulo-dato" for="RangeFechaTermino">Mes término</label>   
+            <div class="flex">           
+               <month-picker #FechaTermino="ngModel" id="RangeFechaTermino" name="RangeFechaTermino" [(ngModel)]="Value.FechaTermino" (onChange)="onValueChange($event)" ></month-picker>
+               @if(filtroRango){
+                  <button pButton  
+                           type="button"
+                           class="p-button-danger"
+                           icon="pi pi-calendar-minus"
+                           style="border-radius:4px"
+                           (click)="filtrarRango(false)">
+                  </button>
+               }
+               
+            </div>
+         </div>
+      }
+   </div>
+</span>

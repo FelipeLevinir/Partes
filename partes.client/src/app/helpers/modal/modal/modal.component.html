@@ -1,0 +1,24 @@
+﻿<div [ngClass]="{'ZoomNormal' : globalService.Parametros.Zoom=='ZoomNormal',
+                'ZoomSmall' : globalService.Parametros.Zoom=='ZoomSmall',
+                'ZoomLarge' : globalService.Parametros.Zoom=='ZoomLarge'}">
+
+
+
+    <p-dialog [header]="header"
+              [(visible)]="Display"
+              [modal]="true"
+              [closable]="false"
+              styleClass="modal {{styleClass}}"
+              [contentStyle]="{'overflow-y': 'hidden'}">
+
+         
+        <ng-template ModalContenido ></ng-template>
+
+        <ng-template pTemplate="footer">
+            <ng-template ModalFooter>
+                FOOTER
+            </ng-template>
+        </ng-template>
+    </p-dialog>
+
+</div>

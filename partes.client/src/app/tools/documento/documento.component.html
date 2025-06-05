@@ -1,0 +1,65 @@
+<div class="surface-card p-3 border-solid rounded-md shadow-1 w-full flex justify-between align-items-center mb-3"
+     [ngClass]="{
+       'doc-valid': Documento?.Nombre,
+       'doc': !Documento?.Nombre,
+       'doc-invalid': Invalid
+     }">
+ 
+  <div class="flex align-items-center place-items-center gap-2 overflow-hidden text-overflow-ellipsis white-space-nowrap">
+      @if(Working){
+         <i class="pi pi-spin pi-spinner text-secondary"></i>
+      } 
+      <span class="font-medium text-color ">{{ Documento?.Tipo?.Nombre }}</span>
+      @if(Documento?.Nombre){
+         <span class="text-sm text-color-secondary">({{ Documento?.Nombre }})</span>
+      }
+  </div>
+
+  <div class="flex gap-1">
+      <button
+         pButton
+         pRipple
+         icon="pi pi-search"
+         class="p-button-sm p-button-rounded p-button-success"
+         style="height: 2rem; width: 2rem;"
+         [disabled]="Working || BrowseDisabled || (Documento?.Id === -1 && !Documento?.Nombre)"
+         (click)="Browse()"
+         [ngClass]="{ 'opacity-50': BrowseDisabled || (Documento?.Id === -1 && !Documento?.Nombre) }"
+         pTooltip="Ver archivo">
+      </button>
+      @if(!ReadOnly){
+         <button
+           pButton
+           pRipple
+           icon="pi pi-upload"
+           class="p-button-sm p-button-rounded p-button-primary"
+           style="height: 2rem; width: 2rem;"
+           [disabled]="Working || UploadDisabled"
+           (click)="Upload()"
+           [ngClass]="{ 'opacity-50': UploadDisabled }"
+           pTooltip="Subir archivo">
+         </button>
+         <button
+           pButton
+           pRipple
+           icon="pi pi-trash"
+           class="p-button-sm p-button-rounded p-button-danger"
+           style="height: 2rem; width: 2rem;"
+           [disabled]="Working || DeleteDisabled || (Documento?.Id === -1 && !Documento?.Nombre)"
+           (click)="Delete()"
+           [ngClass]="{ 'opacity-50': DeleteDisabled || (Documento?.Id === -1 && !Documento?.Nombre) }"
+           pTooltip="Eliminar archivo">
+         </button>
+      }
+  </div>
+</div>
+
+<!-- Input archivo oculto -->
+<input
+    #InputFile
+    id="archivo"
+    name="archivo"
+    class="hidden"
+    type="file"
+    [accept]="AcceptFiles"
+    (change)="handleInputFile($any($event.target).files)">

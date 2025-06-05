@@ -1,0 +1,7 @@
+:host(.ng-invalid.ng-touched) p-select,
+:host(.ng-invalid.ng-dirty) p-select,
+:host(.ng-invalid.ng-touched) p-multiselect,
+:host(.ng-invalid.ng-dirty) p-multiselect {
+  background-color: #ffe5e5 !important;
+  border-color: red !important;
+}

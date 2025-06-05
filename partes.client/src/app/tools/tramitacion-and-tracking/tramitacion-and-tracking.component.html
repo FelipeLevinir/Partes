@@ -1,0 +1,11 @@
+<div class="cursor-pointer" (mouseover)="ShowButton=true" (mouseout)="ShowButton=false"
+     [ngClass]="{'show-box': ShowButton}"
+     (click)="OpenTracking()">
+    <div>
+        {{Item?.Tramitacion?.Nombre}}
+    </div>
+    <hr>
+    <div>
+        {{Item?.Tramitacion?.RolPendiente ? Item.Tramitacion?.RolPendiente.Nombre : Item.Tramitacion?.Estado?.Nombre}}
+    </div>
+</div>

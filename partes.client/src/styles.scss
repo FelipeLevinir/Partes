@@ -1,0 +1,123 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'primeicons/primeicons.css';
+@use './tailwind.css';
+@use './assets/layout/layout.scss';
+ 
+// "rem" por defecto para tipografía, espaciado y layout (Tailwind ya lo hace).
+// "px" para detalles que requieren precisión visual (bordes, íconos, líneas).
+// "em" cuando se busca que algo crezca junto al texto de un componente en particular (botones, badges, inputs, etc).
+ 
+app-modal > div > p-dialog > div { //Para que el SweetAlert no quede detrás del modal 
+   z-index: 1050 !important;
+}
+
+ 
+.label-titulo-dato {
+   font-size: 0.9rem;
+   padding-bottom: 0.35rem;
+}
+
+.label-titulo {
+   font-size: 1.05rem;
+  
+   
+}
+
+.fila-botones-modal{
+   display: flex;
+   flex-direction: row-reverse;
+   align-items: end;
+}
+
+ 
+.separacion-filas-formulario {
+   @apply space-y-3; // SCSS no reconoce @apply como una regla estándar propia — porque es una directiva de Tailwind, no de SCSS. 
+                     // Es un warning, no un error. 
+                     // Se puede ocupar @apply en SCSS, CSS pero no en HTML.
+                     // Cambia por -y-4, -y-5... para más separación entre filas
+}
+
+
+.layout-content {
+   // padding: 4rem .825rem  1rem .825rem !important;
+   padding: 0rem !important;
+   width: 100%!important;
+}
+
+
+p-tab.p-tab-active{
+   border-width: 1px !important;
+   border-radius: .45rem .45rem 0 0 !important;
+}
+
+p-tabpanels{
+   border-width: 1px !important;
+   border-color: var(--p-text-muted-color);
+}
+
+.p-dialog-footer{
+   display: grid !important;
+   justify-content: unset !important;
+}
+
+.tab-error {
+   color: #ef4444 !important;
+ 
+   border: .05rem solid var(--p-message-error-background) !important;
+   background-color: var(--p-message-error-background) !important;
+   border-radius: .45rem .45rem 0 0 !important;
+ }
+
+.p-tab.p-tab-active.tab-error {
+   border: .05rem solid #ef4444 !important;
+   color: #ef4444 !important;
+   background-color: var(--p-message-error-background) !important;  
+ 
+ }
+ 
+ .paneles-modal{
+   display: grid;
+   margin-top: .2rem;
+ }
+
+.height-standard{
+   height: calc(100vh - 5rem) !important;
+   overflow-y: auto;
+}
+
+.p-dialog {
+   border-color: #282828 !important;
+}
+
+.p-dialog-header{
+   background-color: #ba9972;
+   border-top-left-radius: 12px;
+   border-top-right-radius: 12px;
+   color: #000000;
+}
+
+.p-dialog-title{
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 28px !important;
+   color: #000000;
+}
+
+.p-dialog-content {
+   background-color: #282828;
+   border-color: #282828;
+}
+
+.p-dialog-footer{
+   padding: 1.25rem 1.25rem 1.25rem 1.25rem !important;
+   background-color: #000000;
+   border-bottom-left-radius: 12px;
+   border-bottom-right-radius: 12px;
+}
+
+.p-button{
+   color: rgb(40 40 40 / var(--tw-text-opacity, 1)) !important;
+   background-color: rgb(186 153 114 / var(--tw-bg-opacity, 1)) !important;
+   border-color: rgb(186 153 114 / var(--tw-border-opacity, 1)) !important;
+   border-width: 1px !important;
+   cursor: pointer !important;
+}

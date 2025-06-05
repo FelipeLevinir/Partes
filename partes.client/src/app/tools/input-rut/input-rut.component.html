@@ -1,0 +1,35 @@
+<div class="flex"> 
+   <div class="mr-2"  >
+       <input #RUTNumero="ngModel"               
+               pInputText 
+               InputNumber 
+               [pTooltip]="RUTError()" 
+               type="text"
+               [id]="id+'-RUTNumeroEsrTool'"
+               [name]="name+'-RUTNumeroEsrTool'"
+               [(ngModel)]="Value.Numero"
+               [required]="required"
+               [disabled]="isDisabled" maxlength="10"
+               (change)="onValueChange()"
+               (blur)="onTouchFn()" />
+   </div>
+   <div>
+      <input #RUTDV="ngModel"
+            pInputText
+            [pTooltip]="RUTError()" 
+            type="text"
+            [id]="id+'-RUTNDVEsrTool'"
+            [name]="name+'-RUTDVEsrTool'"
+            [(ngModel)]="Value.DV"
+            [required]="required"
+            [disabled]="isDisabled" maxlength="1"
+            (keypress)="onKeyDV($event)"
+            (change)="onValueChange()"
+            (blur)="onTouchFn()"
+            class="w-10" />
+   </div>
+</div>
+
+
+
+

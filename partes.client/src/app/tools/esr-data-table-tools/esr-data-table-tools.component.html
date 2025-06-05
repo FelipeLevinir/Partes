@@ -1,0 +1,124 @@
+@if(esrDataType?.toLowerCase() != 'sum'){
+   <div class="flex justify-content-between align-items-center p-sortable-column" [pSortableColumn]="esrProperty ?? undefined">
+      {{esrLabel}} 
+      @if(esrShowSort){
+         <p-sortIcon [field]="esrProperty ?? undefined" class="ml-3"></p-sortIcon>
+      }
+      @if(esrShowFilter){
+         <p-columnFilter  
+                        #esrColumnFilter
+                         [field]="esrProperty ?? undefined"
+                         display="menu"
+                         [matchMode]="matchMode()" 
+                         [showApplyButton]="false"
+                         [showClearButton]="false"
+                         [showOperator]="false"
+                         [showMatchModes]="false"
+                         [showAddButton]="false"
+                         [hideOnClear]="true"
+                         (click)="Focus()"
+                         class="ml-auto">
+             <ng-template pTemplate="header">
+                 <div class="px-3 pt-3 pb-0">
+                     <span class="font-bold"> {{esrLabel}} </span>
+                 </div>
+             </ng-template>
+             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                 <div >
+                  @if(esrDataType?.toLowerCase() == 'number'){
+                     <input #esrInputNumber
+                            pInputText              
+                            type="number"
+                            [ngModel]="value"
+                            (input)="filter($any($event.target).value)" 
+                           />
+                  }@else if(esrDataType?.toLowerCase() == 'text'){
+                     <input #esrInputText
+                            pInputText
+                            type="text"
+                            [ngModel]="value"
+                            (input)="filter($any($event.target).value)" 
+                            autofocus="autofocus"/>
+                  }@else if(esrDataType?.toLowerCase() == 'date'){
+                     <p-date-picker  
+                                 [ngModel]="value"
+                                 dateFormat="dd M yy"
+                   
+                                 (onSelect)="filter($event)"
+                                 (onClearClick)="filter(null)"
+                              
+                                 appendTo="body">
+                     </p-date-picker>
+                  }@else if(esrDataType?.toLowerCase() == 'list'){
+                     <p-multiSelect  
+                                    [options]="esrDataList ?? undefined"
+                                    [(ngModel)]="ListValue"
+                                    optionLabel="{{esrDataListDisplayMember}}"
+                                    [showClear]="true"
+                                    placeholder="Seleccione filtro"
+                                    (onChange)="ListFilter( filter, $event.value)"
+                                    (onClear)="filter(null)"
+                                    [dataKey]="esrDataListValueMember ?? undefined"
+                                    appendTo="body"
+                                    emptyMessage="No hay resultados">
+                     </p-multiSelect>
+                  }@else if(esrDataType?.toLowerCase() == 'month'){
+                     <p-date-picker  
+                                 [ngModel]="value"
+                                 dateFormat="MM yy"
+                                 view="month"
+                                
+                                 (onSelect)="filter($event)"
+                                 (onClearClick)="filter(null)"
+                                  
+                                 appendTo="body">
+      
+                     </p-date-picker>
+                  }@else if(esrDataType?.toLowerCase() == 'range'){
+                     <ng-container>
+                         <p-slider [(ngModel)]="rangeValues" [range]="true"
+                                   (onSlideEnd)="RangeFilter(filter)"></p-slider>
+      
+                         <div class="flex align-items-center justify-content-between px-2">
+                             <span>{{getRangeMinValue() | number}} a {{getRangeMaxValue() | number}}</span>
+                        
+                         </div>
+                     </ng-container>
+                  }@else if(esrDataType?.toLowerCase() == 'rangedate'){
+                     <ng-container>
+                         <div>fecha inicio:</div>
+                         <p-date-picker [(ngModel)]="RangeDateMin"
+                                     dateFormat="dd M yy"
+                                  
+                                     (onSelect)="RangeDateFilter(filter)"
+                                     (onClearClick)="RangeDateFilter(filter)"
+                             
+                                     appendTo="body">
+                         </p-date-picker>
+                         <div class="mt-3">fecha término:</div>
+                         <p-date-picker [(ngModel)]="RangeDateMax"
+                                     dateFormat="dd M yy"
+                          
+                                     (onSelect)="RangeDateFilter(filter)"
+                                     (onClearClick)="RangeDateFilter(filter)"
+                                 
+                                     appendTo="body">
+                         </p-date-picker>
+                     </ng-container>
+                  }      
+                 </div>
+                 <div class="mt-2 flex justify-content-end">
+                     <button pButton pRipple label="Limpiar" (click)="Clear(filter)" class="w-auto  p-button-sm" icon="pi pi-filter"></button>
+                 </div>
+             </ng-template>
+      
+         </p-columnFilter>
+      }
+   
+   </div>
+}
+@else if(esrDataType?.toLowerCase() == 'sum'){
+   <div class="flex justify-content-end align-items-end">
+       Σ : {{Totalizador | number}}
+   </div>
+}

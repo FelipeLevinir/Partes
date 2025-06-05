@@ -1,0 +1,317 @@
+<div class="min-h-screen w-full bg-[#2F2F2F] overflow-y-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 min-h-screen gap-5 px-4 sm:px-10">
+        <!-- Imagen -->
+        <div class="order-1 md:order-none w-full border-[4px] border-[#ba9972] rounded-tr-[60px] rounded-bl-[60px] overflow-hidden max-h-[100vh]">
+          <img src="assets/layout/images/portada.jpeg" alt="Foto pareja" class="w-full h-full object-cover" />
+        </div>
+      
+        <!-- Texto -->
+        <div class="order-2 md:order-none w-full flex flex-col justify-center text-center overflow-hidden">
+          <div class="border-4 border-double border-[#ba9972] rounded-[10px] text-[#ba9972] px-4 sm:px-8 py-10 space-y-6">
+            <p class="text-[30px] sm:text-[35px] md:text-[40px] tracking-widest" style="font-family: 'Cormorant Infant', serif;">
+              {{fechaMatrimonio | fecha}}
+            </p>
+      
+            <h1 class="text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-none font-serif" style="font-family: 'Cormorant SC', serif;">
+              {{noviaNombre[0]}} & {{novioNombre[0]}}
+            </h1>
+      
+            <p class="text-[28px] sm:text-[35px] md:text-[45px] font-medium" style="font-family: 'Cormorant SC', serif;">
+              {{noviaNombre | uppercase}} & {{novioNombre | uppercase}}
+            </p>
+      
+            <img src="assets/layout/giff/rings.gif" alt="anillos" class="mx-auto w-24 sm:w-28 md:w-32 mb-4" />
+      
+            <p class="italic text-[18px] sm:text-[20px] md:text-[24px] lg:text-[25px]" style="font-family: 'Cormorant Infant', serif;">
+              {{fraseInicio}}
+            </p>
+          </div>
+        </div>
+    </div>
+    
+    <div class="w-full bg-[#2F2F2F] text-[#ba9972] px-4 sm:px-6 md:px-10 py-16 flex flex-col items-center text-center space-y-10">
+        <div>
+          <div class="mb-4">
+            <img src="assets/layout/giff/clock.gif" alt="pareja" class="mx-auto w-24 sm:w-28 md:w-36" />
+          </div>
+      
+          <p class="text-base sm:text-lg tracking-widest uppercase mb-2" style="font-family: 'Times New Roman', Times, serif;">
+            Tan solo faltan
+          </p>
+      
+          <!-- Contador -->
+          <div class="text-[24px] sm:text-[30px] md:text-[35px] font-mono flex flex-wrap justify-center gap-3 sm:gap-4" style="font-family: 'Times New Roman', Times, serif;">
+            <div>{{ meses | number:'2.0' }}<div class="text-xs">Meses</div></div>
+            <div>:</div>
+            <div>{{ dias | number:'2.0' }}<div class="text-xs">Días</div></div>
+            <div>:</div>
+            <div>{{ horas | number:'2.0' }}<div class="text-xs">Hrs</div></div>
+            <div>:</div>
+            <div>{{ minutos | number:'2.0' }}<div class="text-xs">Mins</div></div>
+            <div>:</div>
+            <div>{{ segundos | number:'2.0' }}<div class="text-xs">Seg</div></div>
+          </div>
+      
+          <!-- Línea decorativa -->
+          <div class="flex items-center justify-center space-x-4 my-6">
+            <div class="flex-grow h-px bg-[#ba9972]"></div>
+            <div class="text-[#ba9972] text-4xl select-none">✷</div>
+            <div class="flex-grow h-px bg-[#ba9972]"></div>
+          </div>
+        </div>
+      
+        <!-- Mensaje -->
+        <div class="max-w-4xl space-y-4 mx-auto px-4 w-full">
+          <h2 class="text-[32px] sm:text-[48px] md:text-[60px] font-normal leading-tight" style="font-family: 'Cormorant SC', serif;">
+            Querida familia y amigos
+          </h2>
+      
+          <p class="text-[#d3bfa3] text-[16px] sm:text-[20px] md:text-[22px] leading-relaxed font-light" style="font-family: 'Cormorant Infant', serif;">
+            {{ fraseIntroductoria }}
+          </p>
+      
+          <div class="text-2xl mt-4 select-none">
+            <img src="assets/layout/giff/couple.gif" alt="pareja" class="mx-auto w-24 sm:w-28 md:w-36 mb-6" />
+          </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-6 py-10 px-4 sm:px-10">
+
+        <div class="flex flex-col justify-center text-center">
+            <div class="border-4 border-double border-[#ba9972] rounded-[10px] text-[#ba9972] bg-[#282828] p-6">
+                <img src="assets/layout/giff/church.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <h2 class="text-3xl sm:text-5xl tracking-widest mb-6" style="font-family: 'Cormorant SC', serif;">
+                    Ceremonia
+                </h2>
+                <p class="text-3xl sm:text-5xl font-serif italic mb-4" style="font-family: 'Cormorant Infant', serif;">
+                    {{ ceremoniaLugar }}
+                </p>
+                <p class="text-lg sm:text-xl font-medium mb-6">
+                    {{ ceremoniaDireccion }}
+                </p>
+                <div class="flex flex-col items-center gap-3">
+                    <button (click)="OpenGoogleMaps(ceremoniaDireccion)" class="border border-[#ba9972] text-[#ba9972] hover:bg-[#ba9972] hover:text-[#282828] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300">
+                        Llega con Google Maps
+                    </button>
+                    <button (click)="OpenWaze(ceremoniaDireccion)" class="border border-[#ba9972] text-[#ba9972] hover:bg-[#ba9972] hover:text-[#282828] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300">
+                        Llega con Waze
+                    </button>
+                </div>
+            </div>
+        </div>
+      
+        <div class="flex flex-col justify-center text-center">
+            <div class="border-4 border-double border-[#ba9972] rounded-[10px] text-[#ba9972] bg-[#282828] p-6">
+                <img src="assets/layout/giff/party.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <h2 class="text-3xl sm:text-5xl tracking-widest mb-6" style="font-family: 'Cormorant SC', serif;">
+                    Fiesta
+                </h2>
+                <p class="text-3xl sm:text-5xl font-serif italic mb-4" style="font-family: 'Cormorant Infant', serif;">
+                    {{ recepcionLugar }}
+                </p>
+                <p class="text-lg sm:text-xl font-medium mb-6">
+                    {{ recepcionDireccion }}
+                </p>
+                <div class="flex flex-col items-center gap-3">
+                    <button (click)="OpenGoogleMaps(recepcionDireccion)" class="border border-[#ba9972] text-[#ba9972] hover:bg-[#ba9972] hover:text-[#282828] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300">
+                        Llega con Google Maps
+                    </button>
+                    <button (click)="OpenWaze(recepcionDireccion)" class="border border-[#ba9972] text-[#ba9972] hover:bg-[#ba9972] hover:text-[#282828] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300">
+                        Llega con Waze
+                    </button>
+                </div>
+            </div>
+        </div>      
+    </div>
+      
+    <div class="bg-[#ba9972] w-full py-24 px-6 text-[#2F2F2F]">
+        <div class="text-center mb-6">
+            <h2 class="text-[60px]" style="font-family: 'Cormorant SC', serif;">
+                Programa
+            </h2>
+        </div>
+      
+        <div class="text-center mb-12">
+            <p class="text-[25px]" style="font-family: 'Cormorant Infant', serif;">
+                Este es el itinerario que tenemos preparados para todos ustedes.
+            </p>
+        </div>
+      
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-8 text-center">
+          
+            <div class="flex flex-col items-center gap-1">
+                <img src="assets/layout/giff/door.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <div class="text-[22px] font-medium" style="font-family: 'Cormorant Infant', serif;">Llegada</div>
+                <div class="text-[18px] font-bold" style="font-family: 'Cormorant Infant', serif;">{{horaLLegada}}</div>
+            </div>
+      
+            <div class="flex flex-col items-center gap-1">
+                <img src="assets/layout/giff/bible.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <div class="text-[22px] font-medium" style="font-family: 'Cormorant Infant', serif;">Ceremonia</div>
+                <div class="text-[18px] font-bold" style="font-family: 'Cormorant Infant', serif;">{{horaCeremonia}}</div>
+            </div>
+      
+            <div class="flex flex-col items-center gap-1">
+                <img src="assets/layout/giff/bartender.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <div class="text-[22px] font-medium" style="font-family: 'Cormorant Infant', serif;">Recepción</div>
+                <div class="text-[18px] font-bold" style="font-family: 'Cormorant Infant', serif;">{{horaRecepcion}}</div>
+            </div>
+      
+            <div class="flex flex-col items-center gap-1">
+                <img src="assets/layout/giff/dinner.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <div class="text-[22px] font-medium" style="font-family: 'Cormorant Infant', serif;">Cena</div>
+                <div class="text-[18px] font-bold" style="font-family: 'Cormorant Infant', serif;">{{horaCena}}</div>
+            </div>
+      
+            <div class="flex flex-col items-center gap-1">
+                <img src="assets/layout/giff/disco-ball.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <div class="text-[22px] font-medium" style="font-family: 'Cormorant Infant', serif;">Fiesta</div>
+                <div class="text-[18px] font-bold" style="font-family: 'Cormorant Infant', serif;">{{horaFiesta}}</div>
+            </div>
+
+            <div class="flex flex-col items-center gap-1">
+                <img src="assets/layout/giff/finish.gif" alt="church" class="mx-auto w-28 sm:w-36 mb-6"/>
+                <div class="text-[22px] font-medium" style="font-family: 'Cormorant Infant', serif;">Término</div>
+                <div class="text-[18px] font-bold" style="font-family: 'Cormorant Infant', serif;">{{terminoFiesta}}</div>
+            </div>
+        </div>
+    </div>      
+
+    <div class="bg-[#282828] text-[#ba9972] py-24 px-6 text-center">
+
+        <div class="text-[60px] mb-6" style="font-family: 'Cormorant SC', serif;">
+          ¿Vienes con nosotros?
+        </div>
+      
+        <div class="text-[25px] mb-10 max-w-xl mx-auto" style="font-family: 'Cormorant Infant', serif;">
+            Esperamos compartir este gran día junto a ti. Por favor responde antes del 20 de octubre de 2025.
+        </div>
+      
+        <div class="flex justify-center items-center gap-8 mb-10 text-[28px]">
+            <img src="assets/layout/giff/confirmacion.gif" alt="pareja" class="mx-auto w-28 sm:w-36" />
+        </div>
+      
+        <button class="bg-[#ba9972] text-[#282828] border border-[#ba9972] hover:bg-transparent hover:text-[#ba9972] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300"
+                (click)="NavegarListaAsistentes()">Confirmar aquí
+        </button>
+      
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 justify-center gap-x-12 gap-y-10 py-10 px-4 sm:px-10">
+        <div class="flex flex-col justify-center text-center">
+            <div class="w-full max-w-md mx-auto border-4 border-double border-[#ba9972] rounded-[10px] text-[#ba9972] bg-[#282828] p-6 h-[650px] flex flex-col justify-center text-center gap-6">                
+                <h2 class="text-[35px] tracking-widest mb-6" style="font-family: 'Cormorant SC', serif;">
+                    Dress Code
+                </h2>
+                
+                <img src="assets/layout/giff/formal.gif" alt="pareja" class="mx-auto w-28 sm:w-36 mb-6" />
+
+                <p class="text-[35px] mb-6" style="font-family: 'Cormorant SC', serif;">
+                    Formal
+                </p>
+            </div>
+        </div>
+      
+        <div class="flex flex-col justify-center text-center">
+            <div class="w-full max-w-md mx-auto border-4 border-double border-[#ba9972] rounded-[10px] text-[#ba9972] bg-[#282828] p-6 h-[650px] flex flex-col justify-center text-center gap-6">                
+                <h2 class="text-[35px] tracking-widest mb-6" style="font-family: 'Cormorant SC', serif;">
+                    Información Importante
+                </h2>
+                <img src="assets/layout/giff/warning.gif" alt="pareja" class="mx-auto w-28 sm:w-36 mb-6" />
+                <div class="flex flex-col items-center gap-3">
+                    <button class="bg-[#ba9972] text-[#282828] border border-[#ba9972] hover:bg-transparent hover:text-[#ba9972] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300"
+                            (click)="OpenInformacionImportante()">Ver más
+                    </button>
+                </div>
+            </div>
+        </div>   
+          
+        <div class="flex flex-col justify-center text-center">
+            <div class="w-full max-w-md mx-auto border-4 border-double border-[#ba9972] rounded-[10px] text-[#ba9972] bg-[#282828] p-6 h-[650px] flex flex-col justify-center text-center gap-6">
+                <img src="assets/layout/giff/gif.gif" alt="pareja" class="mx-auto w-28 sm:w-36 mb-6" />
+                <h2 class="text-[35px] tracking-widest mb-6" style="font-family: 'Cormorant SC', serif;">
+                    Regalos
+                </h2>
+                <p class="text-[25px] font-serif italic mb-4" style="font-family: 'Cormorant Infant', serif;">
+                    El mejor regalo para nosotros es contar con tu presencia. Sin embargo, estaríamos muy felices de recibir un aporte que nos ayude a construir nuestro sueño.
+                </p>
+                <div class="flex flex-col items-center gap-3">
+                    <button class="bg-[#ba9972] text-[#282828] border border-[#ba9972] hover:bg-transparent hover:text-[#ba9972] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300"
+                            (click)="NavegarListaRegalos()">Lista de Regalos
+                    </button>
+                    <button class="bg-[#ba9972] text-[#282828] border border-[#ba9972] hover:bg-transparent hover:text-[#ba9972] text-lg sm:text-xl px-6 py-3 rounded rounded-xl transition duration-300"
+                            (click)="OpenCuentaBancaria()">Cuenta Bancaria
+                    </button>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    <div class="grid grid-cols-1 bg-[#ba9972] py-24 px-4 sm:px-10 md:px-20 xl:px-64 text-[#2F2F2F]">
+        <div class="flex flex-col justify-center text-center">
+          <div class="border-4 border-double border-[#ba9972] rounded-[20px] text-[#ba9972] bg-[#282828] p-6 min-h-[400px] flex flex-col items-center justify-center space-y-6">
+      
+            <img src="assets/layout/giff/super-party.gif" alt="pareja" class="mx-auto w-24 sm:w-28 md:w-36" />
+      
+            <div class="text-4xl sm:text-5xl md:text-6xl tracking-widest" style="font-family: 'Cormorant SC', serif;">
+              ¡Armemos una playlist juntos!
+            </div>
+      
+            <div class="text-lg sm:text-xl md:text-2xl px-2 sm:px-10" style="font-family: 'Cormorant Infant', serif;">
+              ¿Qué canciones no pueden faltar en nuestra fiesta? ¡Ayúdanos!
+            </div>
+      
+            <button
+              class="bg-[#ba9972] text-[#282828] border border-[#ba9972] hover:bg-transparent hover:text-[#ba9972] text-base sm:text-lg md:text-xl px-6 py-3 rounded-xl transition duration-300"
+              (click)="abrirPlaylist()">
+              Añadir Canciones
+            </button>
+      
+          </div>
+        </div>
+    </div> 
+    
+    <div class="w-full bg-[#2F2F2F] text-[#ba9972] px-4 sm:px-10 py-16 text-center space-y-12">
+        <div class="text-[40px] sm:text-[60px] tracking-widest" style="font-family: 'Cormorant SC', serif;">
+            Nuestra historia
+        </div>    
+        <div class="text-[18px] sm:text-[22px] leading-relaxed max-w-3xl mx-auto text-center" style="font-family: 'Cormorant Infant', serif;">
+            {{textoHistoria}}
+        </div>
+        <div class="text-4xl">
+            <img src="assets/layout/giff/match.gif" alt="pareja" class="mx-auto w-24 sm:w-28 md:w-36" />
+        </div>
+      
+        <div class="space-y-20 mt-10">
+            <div *ngFor="let item of elementos; let i = index"
+                class="flex flex-col md:flex-row items-center justify-center md:items-center gap-8 md:gap-12 px-4 md:px-10"
+                [ngClass]="i % 2 !== 0 ? 'md:flex-row-reverse' : ''">
+      
+                <div class="w-full md:w-1/2 max-h-[80vh] flex justify-center items-center">
+                    <img [src]="item.imagen"
+                        alt="Foto pareja"
+                        class="w-[600px] h-[80vh] object-contain" />
+                </div>
+        
+                <div class="w-full md:w-1/2 flex items-center justify-center">
+                    <p class="text-[22px] sm:text-[26px] lg:text-[30px] text-center leading-relaxed" style="font-family: 'Cormorant Infant', serif;">
+                        {{ item.descripcion }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <div class="w-full relative px-4 sm:px-10 mt-5 mb-5">
+        <div class="w-full border-[4px] border-[#ba9972] rounded-tr-[60px] rounded-bl-[60px] overflow-hidden relative">
+          <img src="assets/layout/images/portada.jpeg" alt="Foto pareja"
+               class="w-full h-auto object-cover brightness-[0.5]" />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <h2 class="text-[#ba9972] text-[40px] sm:text-[60px] text-center" style="font-family: 'Cormorant SC', serif;">
+              ¡Los esperamos!
+            </h2>
+          </div>
+        </div>
+    </div>           
+</div>

@@ -1,0 +1,23 @@
+ @if(Error){
+    <div class="p-message p-message-error p-3">
+      <div class="p-message-wrapper">      
+         <div class="p-message-text">
+         <span class="p-message-icon pi pi-times-circle mr-3"></span>
+            <strong>
+               {{ Error.Message!.trim() !== '' ? Error.Message : 'Error' }}
+            </strong>
+         </div>
+         <div class="pl-8">
+            @if(Error.ErrorList){
+               <ul style="list-style: inside;">
+                  @for(Error of Error.ErrorList; track $index){
+                     <li>
+                        {{ Error }}
+                     </li>
+                  }
+               </ul>
+            }
+         </div>      
+      </div>
+   </div>
+ }

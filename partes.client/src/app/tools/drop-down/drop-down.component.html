@@ -1,0 +1,38 @@
+@if(!multiselect){
+   <div class="grid">
+      <p-select #dropdown="ngModel"
+                  [id]="id+'-EsrTool'"
+                  [name]="name+'-EsrTool'"
+                  [options]="options"
+                  [(ngModel)]="Value"
+                  optionLabel="{{optionLabel}}"
+                  [showClear]="showClear"
+                  [placeholder]="placeholder"
+                  [required]="required"
+                  [disabled]="isDisabled"
+                  [filter]="filter"
+                  (onChange)="onValueChange($event)"
+                  dataKey="{{IdField}}"
+                  appendTo="body"
+                    >
+      </p-select>
+   </div>
+}@else {
+   <div class="grid">
+      <p-multiSelect #dropdown="ngModel"
+                     [id]="id+'-EsrTool'"
+                     [name]="name+'-EsrTool'"
+                     [options]="options"
+                     [(ngModel)]="Value"
+                     optionLabel="{{optionLabel}}"
+                     [showClear]="showClear"
+                     [placeholder]="placeholder"
+                     [required]="required"
+                     [disabled]="isDisabled"
+                     [filter]="filter"
+                     (onChange)="onValueChange($event)"
+                     dataKey="{{IdField}}"
+                     appendTo="body">
+      </p-multiSelect>
+   </div> 
+}

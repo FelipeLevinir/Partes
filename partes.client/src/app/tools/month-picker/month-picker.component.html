@@ -1,0 +1,24 @@
+<span > 
+   <p-datepicker #Fecha="ngModel"
+               [id]="id+'-EsrTool'"
+               [name]="name+'-EsrTool'"
+               [(ngModel)]="Value"
+               dateFormat="MM yy"
+               [showIcon]="true"
+               [readonlyInput]="true"
+               view="month"
+               [yearNavigator]="true"
+               yearRange="{{Rango}}"
+               [minDate]="minDate"
+               [maxDate]="maxDate"
+               (onClose)="onClose()"
+               (onSelect)="onSelect()"
+               (onClearClick)="onSelect()"
+               [required]="required"
+               [showButtonBar]="true"
+               appendTo="body"
+               [disabled]="isDisabled"
+                >
+   </p-datepicker>
+
+</span>

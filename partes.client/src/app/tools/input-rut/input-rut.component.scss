@@ -1,0 +1,7 @@
+ 
+:host(.ng-invalid.ng-touched) input,
+:host(.ng-invalid.ng-dirty) input {
+  background-color: #ffe5e5 !important;
+  border-color: red !important;
+  color: var(--p-surface-900) !important;
+}

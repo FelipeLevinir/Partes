@@ -1,0 +1,21 @@
+<form #ModalForm="ngForm" class="h-full">
+    <div class="h-full flex flex-col justify-center items-center text-center text-[#ba9972] text-xl space-y-3 font-serif px-4">
+      <p>{{ titularCuentaBancaria }}</p>
+      <p>{{ rut }}</p>
+      <p>{{ tipoCuenta }}</p>
+      <p>{{ nombreBanco }}</p>
+      <p>{{ numeroCuenta }}</p>
+      <p class="italic text-[#d3bfa3]">{{ correoBanco }}</p>
+  
+      <button (click)="copiarDatos()" class="mt-6 bg-[#ba9972] text-[#282828] px-6 py-2 rounded-xl hover:bg-[#a98459] transition">
+        Copiar datos
+      </button>
+    </div>
+  
+    <ng-template ModalFooter>
+      <div class="flex justify-end">
+        <button-cerrar class="mt-2" (click)="Close(Result)" [disabled]="Saving"></button-cerrar>
+      </div>
+    </ng-template>
+  </form>
+  

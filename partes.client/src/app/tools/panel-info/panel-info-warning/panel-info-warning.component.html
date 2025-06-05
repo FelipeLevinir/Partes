@@ -1,0 +1,24 @@
+@if(Warning){
+   <div class="p-message p-message-warn p-3">
+      <div class="p-message-wrapper">      
+         <div class="p-message-text">
+         <span class="p-message-icon pi pi-exclamation-triangle mr-3"></span>
+            <strong>
+            {{ Warning.Message!.trim() !== '' ? Warning.Message : 'Advertencia' }}
+            </strong>
+            
+         </div>
+         <div class="pl-8">
+            @if(Warning.ErrorList){
+               <ul style="list-style: inside;">
+                  @for(Error of Warning.ErrorList; track $index){
+                     <li>
+                        {{ Error }}
+                     </li>
+                  }
+               </ul>
+            }
+         </div>      
+      </div>
+   </div>
+}

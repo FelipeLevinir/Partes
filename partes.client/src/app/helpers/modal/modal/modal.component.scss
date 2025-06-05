@@ -1,0 +1,16 @@
+:host ::ng-deep .modal {
+    width: 500px;
+}
+
+
+:host ::ng-deep .modal-sm {
+    width: 300px;
+}
+
+:host ::ng-deep .modal-lg {
+    width: 800px;
+}
+
+:host ::ng-deep .modal-xl {
+    width: 1140px;
+}

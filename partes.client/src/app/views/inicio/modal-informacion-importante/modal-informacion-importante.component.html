@@ -1,0 +1,12 @@
+<form #ModalForm="ngForm" class="h-full">
+    <div class="h-full flex flex-col justify-center items-center text-center text-[#ba9972] text-xl space-y-3 font-serif px-4">
+        <p>{{ informacionImportante }}</p>
+    </div>
+  
+    <ng-template ModalFooter>
+      <div class="flex justify-end">
+        <button-cerrar class="mt-2" (click)="Close(Result)" [disabled]="Saving"></button-cerrar>
+      </div>
+    </ng-template>
+  </form>
+  
