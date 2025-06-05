@@ -3,6 +3,18 @@ using Partes.Server.Modelos;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// 🔁 Agrega esta sección para habilitar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5200") // O el dominio de producción
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// Configuración de MongoDB
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection("MongoDbSettings"));
 
@@ -22,12 +34,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Seguridad y routing
+// ✅ Habilita la política CORS
+app.UseCors("AllowFrontend");
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-// ✅ Redirección automática a Swagger
+// Redirección a Swagger si se accede a la raíz
 app.MapGet("/", context =>
 {
     context.Response.Redirect("/swagger");

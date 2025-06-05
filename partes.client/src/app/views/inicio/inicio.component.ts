@@ -5,7 +5,7 @@ import { FechaPipe } from '@/helpers/pipes/fecha.pipe';
 import { ModalService } from '@/helpers/modal/service/modal.service';
 import { ModalCuentaBancariaComponent } from './modal-cuenta-bancaria/modal-cuenta-bancaria.component';
 import { ModalInformacionImportanteComponent } from './modal-informacion-importante/modal-informacion-importante.component';
-
+import { EventoService, Evento } from '@/services/evento.service';
 @Component({
   selector: 'app-inicio',
   imports: [CommonModule, FechaPipe],
@@ -62,11 +62,18 @@ export class InicioComponent {
       alt: 'Horario'
     }
   ];
+  
+  eventos: Evento[] | undefined;
 
-  constructor(private readonly modalService: ModalService) {
-  }
+  constructor(private readonly modalService: ModalService, private readonly layoutService: LayoutService, private readonly eventoService: EventoService) {}
 
   ngOnInit() {
+
+    this.eventoService.getEvento().subscribe(data => {
+      this.eventos = data;
+      console.log('Datos desde la API:', this.eventos);
+    });
+
     this.iniciarCuentaRegresiva();
   }
 
