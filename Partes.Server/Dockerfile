@@ -7,18 +7,22 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
 WORKDIR /src
 
-# Copia y restaura el proyecto
-COPY ["Partes.Server/Partes.Server.csproj", "Partes.Server/"]
-RUN dotnet restore "Partes.Server/Partes.Server.csproj"
+# Copia solo el proyecto del backend
+COPY Partes.Server/Partes.Server.csproj Partes.Server/
 
-# Copia todo el código
+# Restaura solo el backend
+RUN dotnet restore Partes.Server/Partes.Server.csproj
+
+# Copia todo el código (incluye partes.client pero no se compilará)
 COPY . .
-WORKDIR "/src/Partes.Server"
-RUN dotnet build "Partes.Server.csproj" -c Release -o /app/build
 
-# Publica en modo release
+# Compila solo el backend
+WORKDIR /src/Partes.Server
+RUN dotnet build Partes.Server.csproj -c Release -o /app/build
+
+# Publica solo el backend
 FROM build AS publish
-RUN dotnet publish "Partes.Server.csproj" -c Release -o /app/publish
+RUN dotnet publish Partes.Server.csproj -c Release -o /app/publish
 
 # Imagen final
 FROM base AS final
