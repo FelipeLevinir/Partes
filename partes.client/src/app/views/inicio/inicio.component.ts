@@ -49,20 +49,107 @@ export class InicioComponent {
     {
       descripcion: 'Tu sonrisa es mi lugar favorito y tu abrazo, mi paz',
       imagen: 'assets/layout/images/1.jpeg',
-      alt: 'Dress code'
+      alt: 'Dress code',
+      mostrar: false
     },
     {
       descripcion: 'Contigo, hasta lo más profundo se vuelve hermoso. Porque incluso entre peces y océanos, tú eres mi mundo.',
       imagen: 'assets/layout/images/2.jpeg',
-      alt: 'Advertencia'
+      alt: 'Advertencia',
+      mostrar: false
     },
     {
       descripcion: '"En cada rincón del mundo, mi sol eres tú. Y aún bajo el cielo más claro, tu amor es lo que más brilla.',
       imagen: 'assets/layout/images/3.jpeg',
-      alt: 'Horario'
+      alt: 'Horario',
+      mostrar: false
+    },
+    {
+      descripcion: 'Nuestro amor es un brindis a la vida, a los sueños compartidos y a cada momento juntos.',
+      imagen: 'assets/layout/images/4.jpeg',
+      alt: 'Brindis en pareja',
+      mostrar: false
+    },
+    {
+      descripcion: 'Tus besos son promesas de aventuras, tu compañía el hogar más bonito.',
+      imagen: 'assets/layout/images/5.jpeg',
+      alt: 'Besito bajo el sol',
+      mostrar: false
+    },
+    {
+      descripcion: 'Entre palmeras y carcajadas, siempre encuentro mi felicidad en ti.',
+      imagen: 'assets/layout/images/6.jpeg',
+      alt: 'Diversión tropical',
+      mostrar: false
+    },
+    {
+      descripcion: 'Juntos, formamos el equipo perfecto. Y nuestro amor, el motor que mueve todo.',
+      imagen: 'assets/layout/images/7.jpeg',
+      alt: 'En la piscina con nuestro perrito',
+      mostrar: false
+    },
+    {
+      descripcion: 'El amor florece cuando estamos juntos, incluso en las alturas.',
+      imagen: 'assets/layout/images/8.jpeg',
+      alt: 'Mirador de flores',
+      mostrar: false
+    },
+    {
+      descripcion: 'Vestidos de elegancia, pero con el corazón repleto de amor y complicidad.',
+      imagen: 'assets/layout/images/9.jpeg',
+      alt: 'Elegancia en ascensor',
+      mostrar: false
+    },
+    {
+      descripcion: 'Un brindis por nosotros, por los momentos simples que se convierten en recuerdos eternos.',
+      imagen: 'assets/layout/images/10.jpeg',
+      alt: 'Brindando cerveza',
+      mostrar: false
+    },
+    {
+      descripcion: 'Bajo el sol y rodeados de naturaleza, nuestro amor sigue creciendo con cada aventura.',
+      imagen: 'assets/layout/images/11.jpeg',
+      alt: 'Día al aire libre',
+      mostrar: false
+    },
+    {
+      descripcion: 'Ese instante en que dijiste “sí” será por siempre mi favorito.',
+      imagen: 'assets/layout/images/12.jpeg',
+      alt: 'Compromiso en la playa',
+      mostrar: false
+    },
+    {
+      descripcion: 'El mar puede estar agitado, pero contigo todo es calma.',
+      imagen: 'assets/layout/images/13.jpeg',
+      alt: 'Paseo costero',
+      mostrar: false
+    },
+    {
+      descripcion: 'En cada beso, sellamos una historia que solo tú y yo entendemos.',
+      imagen: 'assets/layout/images/14.jpeg',
+      alt: 'Beso en la playa',
+      mostrar: false
+    },
+    {
+      descripcion: 'Tu abrazo es mi refugio, incluso bajo el cielo estrellado.',
+      imagen: 'assets/layout/images/15.jpeg',
+      alt: 'Piscina nocturna',
+      mostrar: false
+    },
+    {
+      descripcion: 'Contigo, hasta el universo nos queda chico. ¡Somos cósmicamente perfectos!',
+      imagen: 'assets/layout/images/16.jpeg',
+      alt: 'Aliens enamorados',
+      mostrar: false
+    },
+    {
+      descripcion: 'No importa el lugar, si estoy contigo, estoy en casa.',
+      imagen: 'assets/layout/images/17.jpeg',
+      alt: 'Atardecer en la plaza',
+      mostrar: false
     }
   ];
-  
+    
   eventos: Evento[] | undefined;
 
   constructor(private readonly modalService: ModalService, private readonly layoutService: LayoutService, private readonly eventoService: EventoService) {}
@@ -144,5 +231,14 @@ export class InicioComponent {
     window.open(url, '_blank');
   }
 
+  toggleTexto(index: number, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    this.elementos = this.elementos.map((item, i) => ({
+      ...item,
+      mostrar: i === index ? !item.mostrar : false
+    }));
+  }
   
 }
